@@ -1,0 +1,72 @@
+.parent {
+    display: flex;
+    height: 80vh;
+    justify-content: center;
+    align-items:center;
+}
+
+.new-container {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    padding-bottom: 35vh;
+}
+
+.number-correct {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    position: relative;
+    bottom: 29vh;
+    font-family: 'Times New Roman', serif;
+    font-size: 3vh;
+
+}
+
+.question {
+    font-size: 7vh;
+    font-family: 'Times New Roman', serif;
+}
+
+.answer {
+    font-size: 4vh;
+    margin: 5vh;
+}
+
+.new-question {
+    font-size: 3vh;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    background-color: #4caf50;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.submitter {
+    padding: 2vh;
+    position:relative;
+    bottom: 20vh;
+    font-size: 4vh;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    background-color: #4caf50;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }

@@ -1,0 +1,15 @@
+.product {
+    height: 88vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20vh;
+}
+
+footer {
+    background-color: lightgray;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Times New Roman', serif;
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/alg-styles.css">
+</head>
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="index.html">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="simple-math.html">Simple Math</a></li>
+                    <li class="nav-item"><a class="nav-link" href="algebra.html">Algebra</a></li>
+                    <li class="nav-item"><a class="nav-link" href="calculus.html">Calculus</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>  
+    <div class = "parent">
+        <p class ="question">This is a question</p>
+        <form>
+            <input class="answer">
+            <button class="new-question" type="button" onclick="
+            if (count < 5) {
+                generateRandomIntegral()
+            } else {
+                generateRandomDerivative()
+            }
+            ">New Question</button>
+        </form>
+    </div>
+    
+    <div class = "number-correct">
+        <p class ="correct">Write answers in this format: -1/2cos(2x)+C</p>
+    </div>
+    
+    <div class = "new-container">
+        <button class="submitter" type="button" onclick="
+            if (count < 5) {
+                integralAnswer()
+            } else {
+                derivativeAnswer()
+            }
+            ">Submit</button>
+    </div>
+    
+    <script>
+      function generateRandomVariable() {
+        const variables = ['x', 'y', 'z'];
+        const randomIndex = Math.floor(Math.random() * variables.length);
+        return variables[randomIndex];
+      }
+    
+      function generateRandomFunction() {
+        const functions = ['sin', 'cos', 'tan'];
+        const randomIndex = Math.floor(Math.random() * functions.length);
+        return functions[randomIndex];
+      }
+    
+      function generateRandomMultiple() {
+        return Math.floor(Math.random() * 9) + 1; // Random exponent between 1 and 5
+      }
+    
+    
+      let variable = 0;
+      let func = 0;
+      let multiple = 0;
+      let integralContainer = "";
+      let count = 0
+    
+    
+      function generateRandomIntegral() { 
+        variable = generateRandomVariable();
+        func = generateRandomFunction();
+        multiple = generateRandomMultiple();
+        const integral = `∫ ${func}(${multiple}${variable}) d${variable}`;
+        integralContainer = document.querySelector(".question");
+    
+        // Display the generated integral
+        integralContainer.textContent = integral;
+      }
+    
+      function generateRandomDerivative() {
+        variable = generateRandomVariable()
+        func = generateRandomFunction()
+        multiple = generateRandomMultiple()
+        const derivative = `d/d${variable}(${func}(${variable}^${multiple}))`
+        integralContainer = document.querySelector(".question")
+    
+        integralContainer.textContent = derivative
+      }
+    
+      function derivativeAnswer() {
+        let newFunction = "";
+        let answer = 0
+        let newExp = multiple - 1
+    
+        if (func == "cos") {
+            newFunction = "sin"
+            answer = "-" + multiple + variable + "^" + newExp + newFunction + "(" + variable + "^" + multiple + ")"
+        } else if (func == "sin") {
+            newFunction = "cos"
+            answer =   multiple + variable + "^" + newExp + newFunction + "(" + variable + "^" + multiple + ")"
+        } else {
+            newFunction = "sec"
+            answer = multiple + variable + "^" + newExp + newFunction + "^" + "2" + "(" + variable + "^" + multiple + ")"
+        }
+        let correctDisplay = document.querySelector(".correct")
+        let uAnswer = document.querySelector(".answer")
+        
+        if (answer == uAnswer.value) {
+            count++;
+            correctDisplay.textContent = "(Level 2) Correct Answers: " + count
+        } else {
+            if (count > 0) {
+                count--;
+            } else {
+                count = count;
+            }
+            correctDisplay.textContent = "(Level 2) Correct Answers: " + count
+        }
+      }
+    
+    
+      function integralAnswer() {
+        let newFunction = "";
+        let answer = 0
+    
+        if (func == "cos") {
+            newFunction = "sin"
+            answer = 1 + "/" + multiple + newFunction + "(" + multiple + variable + ")" + "+" + "C"
+        } else if (func == "sin") {
+            newFunction = "cos"
+            answer = "-" + 1 + "/" + multiple + newFunction + "(" + multiple + variable + ")" + "+" + "C"
+        } else {
+            newFunction = "cos"
+            answer = "-" + 1 + "/" + multiple + "ln" + "|cos(" + multiple + variable + ")|" + "+" + "C"
+        }
+        let correctDisplay = document.querySelector(".correct")
+        let uAnswer = document.querySelector(".answer")
+        
+    
+        
+        if (answer == uAnswer.value) {
+            count++;
+            correctDisplay.textContent = "(Level 1) Correct Answers: " + count
+        } else {
+            if (count > 0) {
+                count--;
+            } else {
+                count = count;
+            }
+            correctDisplay.textContent = "(Level 1) Correct Answers: " + count
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>        <!-- Core theme JS-->
+
+</body>
+</html>
+
+
+
+
+
+
